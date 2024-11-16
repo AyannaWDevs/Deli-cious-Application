@@ -5,28 +5,21 @@ public enum SandwichSize {
     EIGHT_INCH(7.00),
     TWELVE_INCH(8.50);
 
-    //stores sandwich price by size
-    private double basePrice;
+    // Stores sandwich base price by size
+    private final double basePrice;
 
-    //constructor for sandwichPrice
     SandwichSize(double basePrice) {
         this.basePrice = basePrice;
-    }
-
-    //method for returning basePrice
-
-    public double getBasePrice() {
-        return basePrice;
     }
 
     //calculates extra charge based on the size for extra toppings\
     //when isAdditional is true,the first set of pricing rules is used
     //? is called the ternary conditional operator. Here, it checks the sandwich size and returns a price based on
     //that size using a switch statement
+    //condition ? valueIfTrue: valueIfFalse
     public double calculateExtraPrice(String extraType, boolean isAdditional) {
         return switch (extraType) {
             case "MEAT" -> isAdditional
-                    //condition ? valueIfTrue: valueIfFalse
                     ? (this == FOUR_INCH ? 0.50 : this == EIGHT_INCH ? 1.00 : 1.50)
                     : (this == FOUR_INCH ? 1.00 : this == EIGHT_INCH ? 2.00 : 3.00);
             case "CHEESE" -> isAdditional
@@ -35,5 +28,9 @@ public enum SandwichSize {
             default -> 0;
         };
     }
+    // Getter for base price
+    public double getBasePrice() {
+        return basePrice;
 
+    }
 }
